@@ -1,0 +1,32 @@
+#!/bin/bash
+
+function run {
+  if ! pgrep $1 ;
+  then
+    $@&
+  fi
+}
+
+#cursor active at boo
+xsetroot -cursor_name left_ptr &
+~/.fehbg &
+dunst -config $HOME/.config/dunst/dunstrc &
+setxkbmap -option grp:rshift_toggle,grp:toggle_switch,grp_led:scroll us,ru & 
+xrandr --output eDP1 --primary --pos 0x0 --output HDMI1  --right-of eDP1
+xsettingsd &
+mpd &
+/usr/bin/lxqt-policykit-agent &
+#xfce4-power-manager &
+clipit &
+udiskie -t &
+nm-applet &
+unclutter &
+#picom -o 0.95 -i 0.88 --detect-rounded-corners --vsync --blur-background-fixed -f -D 5 -c -b
+#picom --config $HOME/.config/picom/picom.conf &
+#picom -b --config /dev/null &
+urxvtd -q -f -o &
+thunar --daemon &
+#~/.dwm/dwmbar &
+xrdb -merge ~/.Xresources &
+
+
